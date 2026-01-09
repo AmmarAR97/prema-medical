@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cross Shape -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M75 35C75 23.9543 83.9543 15 95 15H105C116.046 15 125 23.9543 125 35V75H165C176.046 75 185 83.9543 185 95V105C185 116.046 176.046 125 165 125H125V165C125 176.046 116.046 185 105 185H95C83.9543 185 75 176.046 75 165V125H35C23.9543 125 15 116.046 15 105V95C15 83.9543 23.9543 75 35 75H75V35Z" fill="#2E7D32"/>
+  
+  <!-- Leaf Overlay (Top Right Quadrant) -->
+  <path d="M120 80C120 80 135 35 180 35C180 35 175 85 120 80Z" fill="#81C784"/>
+  <path d="M125 75C125 75 140 30 185 30C185 30 180 80 125 75Z" fill="#4CAF50"/>
+  
+  <!-- Leaf Detail/Vein -->
+  <path d="M130 70C145 60 160 50 175 40" stroke="#1B5E20" stroke-width="4" stroke-linecap="round"/>
+</svg>
