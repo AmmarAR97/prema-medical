@@ -147,7 +147,7 @@ const Hero = () => {
                     >
                         {/* Location Badge - Top Right of Heart - Adjusted for perfect placement */}
                         <motion.div
-                            className="absolute top-[22%] right-[12%] z-30 px-5 py-3 rounded-full bg-white/90 backdrop-blur-md border border-secondary/20 shadow-xl"
+                            className="absolute top-[28%] right-[2%] z-30 px-5 py-3 rounded-full bg-white/90 backdrop-blur-md border border-secondary/20 shadow-xl"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 1 }}
