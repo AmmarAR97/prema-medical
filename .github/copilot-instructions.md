@@ -1,4 +1,4 @@
-# Prema Medicals - AI Coding Instructions
+# Prema-Medical - AI Coding Instructions
 
 ## Project Overview
 Single-page React landing site for a local pharmacy in Karkala, India. Built with Vite + React 19 + Tailwind CSS + Framer Motion.
