@@ -6,42 +6,42 @@ const products = [
         id: 1,
         title: "Medicines",
         desc: "All prescription & OTC medicines available.",
-        image: "/images/medicine_premium.png",
+        image: "images/medicine_premium.png",
         color: "bg-blue-50"
     },
     {
         id: 2,
         title: "Baby Care",
         desc: "Sebamed, J&J, lotions & more for your little ones.",
-        image: "/images/baby_care_premium.png",
+        image: "images/baby_care_premium.png",
         color: "bg-pink-50"
     },
     {
         id: 3,
         title: "Skin Care",
         desc: "CeraVe, Cetaphil, Minimalist & clinical skincare.",
-        image: "/images/skin_care_premium.png",
+        image: "images/skin_care_premium.png",
         color: "bg-purple-50"
     },
     {
         id: 4,
         title: "Pet Foods",
         desc: "Pedigree, Whiskas, Drools combined nutrition.",
-        image: "/images/pet_food_premium.png",
+        image: "images/pet_food_premium.png",
         color: "bg-orange-50"
     },
     {
         id: 5,
         title: "Insulin Care",
         desc: "Mixtard, Basalog & diabetic care needs.",
-        image: "/images/insulin_premium.png",
+        image: "images/insulin_premium.png",
         color: "bg-blue-50"
     },
     {
         id: 6,
         title: "Wellness & Vitamins",
         desc: "Premium supplements for your daily health boost.",
-        image: "/images/wellness_supplements_product.png",
+        image: "images/wellness_supplements_product.png",
         color: "bg-green-50"
     }
 ];

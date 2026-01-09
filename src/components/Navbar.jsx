@@ -33,7 +33,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <a href="#" className="flex items-center gap-3 group">
                     <img
-                        src="/logo.svg"
+                        src="logo.svg"
                         alt="Prema Medicals - Healthcare Logo"
                         className="h-9 w-9 md:h-10 md:w-10 transition-transform group-hover:scale-105"
                     />
