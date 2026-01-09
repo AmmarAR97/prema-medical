@@ -1,85 +1,69 @@
-# Prema-Medical - AI Coding Instructions
+# Prema Medicals — AI Coding Instructions
 
-## Project Overview
-Single-page React landing site for a local pharmacy in Karkala, India. Built with Vite + React 19 + Tailwind CSS + Framer Motion.
+Concise, actionable conventions for AI agents working in this repo. Document only what’s present in code today.
+
+## Overview
+- Single-page landing site for a local pharmacy (Karkala, India)
+- Stack: Vite + React 19 + Tailwind CSS + Framer Motion + lucide-react
+- Entry and layout: see [src/App.jsx](src/App.jsx)
 
 ## Architecture
+- Components loaded in order: `Navbar` → `Hero` → `Brands` → `Products` → `Features` → `Services` → `Footer` → `BackToTop` (see [src/App.jsx](src/App.jsx)).
+- `Features`, `Services`, `Footer` are named exports from [src/components/Sections.jsx](src/components/Sections.jsx) rather than separate files.
+- Section anchors: IDs in use — `home`, `products`, `features`, `services`, `location`. All sections apply `scroll-mt-20` to offset the fixed navbar.
+- Navigation: `Navbar` implements scroll-aware styling and a mobile menu with `AnimatePresence` (see [src/components/Navbar.jsx](src/components/Navbar.jsx)). Mobile links smooth-scroll with a header offset.
 
-### Component Structure
-```
-App.jsx          → Layout wrapper, imports all sections
-├── Navbar       → Fixed header with scroll-aware styling
-├── Hero         → Full-screen hero with animated background blobs
-├── Brands       → Partner brand showcase (text-only logos)
-├── Products     → 6-card product grid with hover effects
-├── Features     → 4-card "Why Choose Us" grid
-├── Services     → 2-column services + embedded Google Map
-├── Footer       → 4-column footer with contact info
-└── BackToTop    → Scroll-triggered floating button
-```
+## Styling & Utilities
+- Tailwind theme: custom colors and fonts defined in [tailwind.config.js](tailwind.config.js); Google Fonts loaded in [src/index.css](src/index.css).
+- Utility: use `cn()` from [src/lib/utils.js](src/lib/utils.js) to merge conditional classNames.
+  Example: `className={cn("base", condition && "variant")}`.
+- Common patterns:
+  - Cards: `rounded-2xl border border-secondary/20 shadow-md hover:shadow-xl`
+  - Buttons: `rounded-full bg-primary hover:bg-primary-dark text-white`
+  - Section padding: `py-16`/`py-20`; Container: `container mx-auto px-4 md:px-6`
 
-### Key Patterns
-
-**Utility Function:** Always use `cn()` from [src/lib/utils.js](src/lib/utils.js) for conditional Tailwind classes:
-```jsx
-import { cn } from "../lib/utils";
-className={cn("base-classes", condition && "conditional-classes")}
-```
-
-**Animation Pattern:** Use Framer Motion with `whileInView` for scroll-triggered animations:
-```jsx
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: index * 0.1 }}
-  viewport={{ once: true }}
->
-```
-
-**Section IDs:** All sections have `scroll-mt-20` for navbar offset. Use `id="sectionname"` for navigation anchors.
-
-## Design System (tailwind.config.js)
-
-### Custom Colors
-- `primary` / `primary-light` / `primary-dark`: Medical green (#2E7D32)
-- `secondary` / `secondary-dark`: Soft blue (#E3F2FD)
-- `charcoal` / `charcoal-light` / `charcoal-lighter`: Text colors (#263238)
-
-### Typography
-- Headings: `font-heading` (Poppins)
-- Body: `font-sans` (Inter)
-- Section titles: `text-4xl md:text-5xl font-heading font-bold`
-
-### Common Patterns
-- Cards: `rounded-2xl border border-secondary/20 shadow-md hover:shadow-xl`
-- Buttons: `rounded-full bg-primary hover:bg-primary-dark text-white`
-- Section padding: `py-16` or `py-20`
-- Container: `container mx-auto px-4 md:px-6`
+## Animation
+- Framer Motion is used for entrance and scroll-in animations.
+- Preferred pattern for grids/lists (see [src/components/Products.jsx](src/components/Products.jsx)):
+  ```jsx
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1 }}
+    viewport={{ once: true }}
+  >
+  ```
+- `Hero` uses animated SVG paths and ambient blobs for background motion (see [src/components/Hero.jsx](src/components/Hero.jsx)).
 
 ## Icons
-Use **lucide-react** exclusively. Always include `aria-hidden="true"` on decorative icons:
-```jsx
-import { MapPin, Phone, Clock } from "lucide-react";
-<MapPin size={16} className="text-primary" aria-hidden="true" />
-```
+- Use `lucide-react` exclusively; mark decorative icons with `aria-hidden="true"`.
+- Example: `import { MapPin } from "lucide-react"` then `<MapPin size={16} className="text-primary" aria-hidden="true" />`.
 
-## Static Assets
-- Images: `/public/images/` (product images with `_premium.png` suffix)
-- Logo: `/public/logo.svg` (medical cross with leaf design)
+## Accessibility
+- Minimum 44×44px touch targets for interactive elements (see `Navbar` toggle and `BackToTop`).
+- Include `aria-label` for icon-only buttons; set external links with `target="_blank" rel="noopener noreferrer"`.
+- Semantic headings: h1 in `Hero`; h2 per section; h3/h4 for card titles.
 
-## Commands
-```bash
-npm run dev      # Start dev server (Vite)
-npm run build    # Production build
-npm run lint     # ESLint check
-npm run preview  # Preview production build
-```
+## Assets
+- Logo: `/public/logo.svg`.
+- Product images under `/public/images/`. Existing cards reference filenames like `*_premium.png` (see [src/components/Products.jsx](src/components/Products.jsx)).
 
-## Known Issues (see SENIOR_UI_UX_REVIEW.md)
-Active UI/UX review document tracks contrast issues and typography inconsistencies. Check before making visual changes.
+## Workflows
+- Scripts (see [package.json](package.json)):
+  - `npm run dev` → start Vite dev server
+  - `npm run build` → production build
+  - `npm run preview` → preview built assets
+  - `npm run lint` → run ESLint on the workspace
+- ESLint config: [eslint.config.js](eslint.config.js) with React plugins; no TypeScript.
 
-## Accessibility Requirements
-- All interactive elements need minimum 44x44px touch targets on mobile
-- Include `aria-label` on icon-only buttons
-- External links need `target="_blank" rel="noopener noreferrer"`
-- Use semantic heading hierarchy (h1 in Hero, h2 for sections, h3/h4 for cards)
+## Implementation Notes
+- Prefer adding new sections as named exports in `src/components/Sections.jsx` to keep composition consistent with [src/App.jsx](src/App.jsx).
+- When adding scroll anchors, include `scroll-mt-20` and update `Navbar` links as needed.
+- Reuse `cn()` for class composition; avoid raw string concatenation.
+- For map/location embeds, follow the `iframe` pattern in `Services` including `title`, `loading="lazy"`, and responsive height.
+
+## External Dependencies
+- React 19, Framer Motion, lucide-react, Tailwind CSS, `clsx` + `tailwind-merge` for `cn()`.
+- Fonts: Inter and Poppins via Google Fonts in [src/index.css](src/index.css).
+
+If anything above is unclear or incomplete, tell us what you need more detail on (e.g., adding a new section/card, modifying navbar behavior), and we’ll refine these instructions.
